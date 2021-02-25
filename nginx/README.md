@@ -1,5 +1,7 @@
 # NGINX
 
+## Tl;Dr: [lighthouse report](nginx_report.pdf) 
+
 Just about had an ego death from this one.
 
 Based on these 2 tutorials:
