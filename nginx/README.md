@@ -11,9 +11,9 @@ Based on these 2 tutorials:
 
 Despite the title of the last tutorial, this was anything but simple. 
 
-The biggest issue I ran into was the fact that sites-enabled was not being honored. Eventually, I ended up rewriting the nginx.conf file and hardcoding the configuration. Tl;Dr: symlinks are hard.
+The biggest issue I ran into was the fact that sites-enabled was not being honored. Eventually, I ended up rewriting `nginx.conf` and hardcoding the configuration. Symlinks are hard.
 
-I did this one on AWS because I knew I would be able to spin up an ec2 instance and get going fairly quickly and the challenge would be configuring NGINX.
+I did this one on AWS because I knew I would be able to spin up an ec2 instance and get going fairly quickly. The challenge would be configuring NGINX.
 
 I ran the [lighthouse](nginx_report.pdf) report against the `redoc` endpoint as `/` produces json and is therefore NOT an auditable mime type for lighthouse.
 
