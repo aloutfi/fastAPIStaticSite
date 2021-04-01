@@ -46,9 +46,37 @@ Service URL: REDACTED
 
 In 1 command, I am able to enable the necessary api, select a region, and finish my deployment. 
 
+Post deployment I was a little confused as to where I had just deployed my app. A quick perusal of the very well written [gcp docs](https://cloud.google.com/sdk/gcloud/reference/run/deploy) for the `gcloud run deploy` command lead me to learn that I had just deployed to [GCP Cloud Run](https://cloud.google.com/run) in the us-central1 region. Essentially, Cloud Run sounds very much like Fargate.
+
+
+
+### Lighthouse report
+
+As with the nginx site, I ran the [lighthouse_report](gcp_docker_report.pdf) report against the `redoc` endpoint as `/` produces json and is therefore NOT an auditable mime type for lighthouse.
+
+## Comparison with nginx lighthouse report
+
+#### [nginx_report](https://github.com/aloutfi/fastAPIStaticSite/blob/main/nginx/nginx_report.pdf)
+
+#### [gcp_docker_report](https://github.com/aloutfi/fastAPIStaticSite/blob/main/gcp_docker/gcp_docker_report.pdf)
+
+### Insights:
+
+All statistics were the same unless otherwise noted.
+
+#### Performance 
+
+The gcp and docker website scored a 97 while the nginx site scored a 98. The docker lighthouse report had a suggestion to remove unused javascript. I therefore think we can safely disregard this discrepancy 
+
+#### Best Practices
+
+The nginx site scored a 93 while the gcp and docker website scored 100! The nginx lighthouse report had a warning that the site did not use https to load content. I had noticed that the site had an https endpoint when I navigated to it! This is another great pro of the docker deploy: Cloud Run was able to automatically take care of preliminary security concerns.
+
+
+
+## Conclusion
+
 Being able to use docker as a separation of concerns piece was helpful as it allowed for separation of concerns. No need to ssh into a remote server. The service is deployed to GCP without needing to configure or deal with the caveats that I ran into while deploying nginx to an AWS ec2 instance.
 
-I ran the [lighthouse_report](gcp_docker_report.pdf) report against the `redoc` endpoint as `/` produces json and is therefore NOT an auditable mime type for lighthouse.
-
-### Comparison with nginx metrics
+The taking care of https alone is enough for me to disregard the (trivial) performance hit that probably isn’t even docker related. 
 
