@@ -1,4 +1,4 @@
 fastapi==0.79.0
-pydantic==1.9.1
+pydantic==1.9.2
 starlette==0.20.4
 uvicorn[standard]==0.18.2
